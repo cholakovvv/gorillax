@@ -1,6 +1,12 @@
-import Image from 'next/image';
-import styles from './page.module.css';
+import Navbar from '@/components/Navbar';
+import Providers from '@/providers/Providers';
 
-export default function Home() {
-  return <div>asd</div>;
-}
+const App: React.FC = () => {
+  return (
+    <Providers>
+      <Navbar />
+    </Providers>
+  );
+};
+
+export default App;
