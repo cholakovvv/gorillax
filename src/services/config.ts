@@ -1,5 +1,5 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { http, createConfig } from 'wagmi';
+import { http, createConfig, useAccount } from 'wagmi';
 import { sepolia } from 'wagmi/chains';
 
 const config = getDefaultConfig({
