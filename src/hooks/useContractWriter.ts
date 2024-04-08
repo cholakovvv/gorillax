@@ -1,6 +1,7 @@
 'use client';
 
 import { ContractWriterProps } from '@/types/types';
+import { parseEther } from 'viem';
 import { useWriteContract } from 'wagmi';
 
 const useContractWriter = (props: ContractWriterProps) => {
@@ -14,6 +15,7 @@ const useContractWriter = (props: ContractWriterProps) => {
           abi: props.abi,
           functionName: props.functionName,
           args: props.args,
+          value: parseEther('0.00000000000001'),
         });
       }
     } catch (error) {

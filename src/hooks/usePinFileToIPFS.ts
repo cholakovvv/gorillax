@@ -10,12 +10,12 @@ export const usePinFileToIPFS = (props: PinToIPFSProps) => {
         name: props.imageName,
       });
 
-      console.log('Image pinned successfully!', response.data);
+      if (response.status == 200) return { success: true, data: response.data };
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error('Error pinning image:', error.response?.data);
+        return { success: false, error: error.response?.data };
       } else {
-        console.error('Unexpected error:', error);
+        return { success: false, error };
       }
     }
   }, []);

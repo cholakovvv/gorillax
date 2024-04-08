@@ -2,43 +2,53 @@ import abi from '@/services/abi';
 import useContractWriter from './useContractWriter';
 import { useWaitForTransactionReceipt } from 'wagmi';
 import { MintProps } from '@/types/types';
+import { useEffect } from 'react';
+import { parseEther } from 'viem';
 
 const useMint = (props: MintProps) => {
-  const defaultReturn = {
-    hash: undefined,
-    isPending: false,
-    isConfirming: false,
-    isConfirmed: false,
-    error: null,
-    executeTransaction: () => {},
-  };
-
-  const { hash, error, isPending, executeTransaction } = useContractWriter({
+  const {
+    hash,
+    error: contractWriterError,
+    isPending,
+    executeTransaction,
+  } = useContractWriter({
     functionName: 'mint',
-    args: [props.tokenURI],
+    // args: [props.tokenURI],
+    args: [
+      `https://turquoise-giant-mammal-348.mypinata.cloud/ipfs/${props.tokenURI}`,
+    ],
     address: '0xD12e71b44BC6479223D18273F56a6Ff9d9F12CA6',
     abi,
   });
-  console.log(hash, error);
 
-  const { isLoading: isConfirming, isSuccess: isConfirmed } =
-    useWaitForTransactionReceipt({ hash });
+  const {
+    isLoading: isConfirming,
+    isSuccess: isConfirmed,
+    error: transactionReceiptError,
+  } = useWaitForTransactionReceipt({ hash });
 
-  try {
-    return {
-      hash,
-      isPending,
-      isConfirming,
-      isConfirmed,
-      error,
-      executeTransaction,
-    };
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      return { ...defaultReturn, error };
+  const error = contractWriterError || transactionReceiptError;
+
+  const executeTransactionWrapper = () => {
+    try {
+      executeTransaction();
+    } catch (syncError) {
+      console.error(
+        'Synchronous error during transaction execution:',
+        syncError
+      );
+      return syncError;
     }
-  }
+  };
+
+  return {
+    hash,
+    isPending,
+    isConfirming,
+    isConfirmed,
+    error,
+    executeTransaction: executeTransactionWrapper,
+  };
 };
 
 export default useMint;
