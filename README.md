@@ -1,4 +1,4 @@
-# La Cerveceria
+# Gorillax
 
 A NFT Launchpad Next.js + TypeScript app.
 
@@ -7,13 +7,13 @@ A NFT Launchpad Next.js + TypeScript app.
 - Clone the project:
 
 ```
-git clone git@github.com:cholakovvv/nft-launchpad.git
+git clone git@github.com:cholakovvv/gorillax.git
 ```
 
-- Go to nft-launchpad directory:
+- Go to gorillax directory:
 
 ```
-cd nft-launchpad
+cd gorillax
 ```
 
 - Install all dependencies:
