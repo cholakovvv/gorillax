@@ -12,6 +12,8 @@ const MintAsNFTButton: React.FC<CustomButtonProps> = (props) => {
       props.setCurrentImgName(props.imageName ? props.imageName : '');
     props.setCurrentImgUrl &&
       props.setCurrentImgUrl(props.imageUrl ? props.imageUrl : '');
+    props.setCurrentImgId &&
+      props.setCurrentImgId(props.imageId ? props.imageId : null);
   };
 
   return <CustomButton handleClick={handleClick} text='Mint as NFT' />;

@@ -4,11 +4,8 @@ import EstimateGas from './EstimateGas';
 import useMintNFT from '@/hooks/useMintNFT';
 import CustomLoader from './CustomLoader';
 import { useEffect, useState } from 'react';
-import CustomAlert from './CustomAlert';
 
 const CustomModal: React.FC<CustomModalProps> = (props) => {
-  const [mintClicked, setMintClicked] = useState<boolean>(false);
-
   const modalStyle = {
     position: 'absolute',
     top: '50%',
@@ -39,29 +36,15 @@ const CustomModal: React.FC<CustomModalProps> = (props) => {
       setOpenModal: props.setOpen,
     });
 
-  const handleClose = () => props.setOpen(false);
-  console.log(hash, isPending, isConfirming, isConfirmed, error, isPinning);
+  const handleClose = () =>
+    !isConfirmed && (hash || isPending || isConfirming) && props.setOpen(false);
 
   return (
     <Modal open={props.open} onClose={handleClose}>
       <Box sx={modalStyle}>
-        {isConfirmed && (
-          <CustomAlert
-            severity='success'
-            text={`Transaction successfully completed! Tx: ${(
-              <a
-                style={{ color: 'white' }}
-                href={`https://sepolia.arbiscan.io/tx/${hash}`}
-                target='_blank'
-              >
-                {hash}
-              </a>
-            )}`}
-          />
-        )}
-        {!mintClicked ? (
+        {!props.mintClicked ? (
           <EstimateGas
-            setMintClicked={setMintClicked}
+            setMintClicked={props.setMintClicked}
             setOpenModal={props.setOpen}
             mint={mint}
           />
@@ -69,23 +52,23 @@ const CustomModal: React.FC<CustomModalProps> = (props) => {
           <CustomLoader text={`Pinning ${props.imageName} NFT...`} />
         ) : !isConfirming && isPending ? (
           <CustomLoader text='Pending transaction...' />
+        ) : hash && isConfirming ? (
+          <>
+            <CustomLoader text={`Minting ${props.imageName} NFT...`} />
+            <p>
+              Tx:{' '}
+              <a
+                style={{ color: 'white' }}
+                href={`https://sepolia.arbiscan.io/tx/${hash}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {hash}
+              </a>
+            </p>
+          </>
         ) : (
-          hash &&
-          isConfirming && (
-            <>
-              <CustomLoader text={`Minting ${props.imageName} NFT...`} />
-              <p>
-                Tx:{' '}
-                <a
-                  style={{ color: 'white' }}
-                  href={`https://sepolia.arbiscan.io/tx/${hash}`}
-                  target='_blank'
-                >
-                  {hash}
-                </a>
-              </p>
-            </>
-          )
+          <CustomLoader text='Opening MetaMask...' />
         )}
       </Box>
     </Modal>

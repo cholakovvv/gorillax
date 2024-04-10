@@ -28,7 +28,7 @@ const EstimateGas: React.FC<EstimateGasProps> = (props) => {
         <CustomLoader text='Calculating gas price...' />
       ) : (
         <>
-          <p>Estimated gas: {currentGasPrice} ETH</p>
+          <p>Estimated gas price: {currentGasPrice} ETH</p>
           <div className='buttons'>
             <Button
               variant='contained'

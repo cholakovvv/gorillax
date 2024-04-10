@@ -13,7 +13,6 @@ const useTransactionMint = (props: MintProps) => {
     executeTransaction,
   } = useContractWriter({
     functionName: 'mint',
-    // args: [props.tokenURI],
     args: [
       `https://turquoise-giant-mammal-348.mypinata.cloud/ipfs/${props.tokenURI}`,
     ],

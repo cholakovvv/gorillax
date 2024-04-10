@@ -34,7 +34,7 @@ const useMintNFT = (props: PinToIPFSProps) => {
       props.setIsConfirming(isConfirming);
     props.setIsConfirmed && isConfirmed && props.setIsConfirmed(isConfirmed);
     props.setError && error && props.setError(error);
-  }, [hash, isPending, isConfirming, isConfirmed, error, props]);
+  }, [hash, isPending, isConfirming, isConfirmed, error]);
 
   useEffect(() => {
     // If already connected, initiate minting process directly.

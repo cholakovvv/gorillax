@@ -46,6 +46,10 @@ export interface CustomModalProps extends PinToIPFSProps {
   isConfirming?: boolean;
   isConfirmed?: boolean;
   error?: Error | null;
+  imgId?: Number | null;
+  setMintClicked?: (value: SetStateAction<boolean>) => void;
+  mintClicked: boolean;
+  setMintedNFT?: (value: SetStateAction<boolean>) => void;
 }
 
 export interface CustomButtonProps {
@@ -57,6 +61,8 @@ export interface CustomButtonProps {
   imageName?: string;
   setCurrentImgUrl?: (value: SetStateAction<string>) => void;
   setCurrentImgName?: (value: SetStateAction<string>) => void;
+  setCurrentImgId?: (value: SetStateAction<number | null>) => void;
+  imageId?: number | null;
 }
 
 export interface EstimateGasProps {
@@ -72,4 +78,17 @@ export interface CustomLoaderProps {
 export interface AlertProps {
   severity: 'success' | 'info' | 'warning' | 'error';
   text: string;
+}
+
+export interface NFTCardProps {
+  imageId: number;
+  imageUrl: string;
+  imageName: string;
+  setCurrentImgUrl: (value: SetStateAction<string>) => void;
+  setCurrentImgName: (value: SetStateAction<string>) => void;
+  setCurrentImgId: (value: SetStateAction<number | null>) => void;
+  setOpenModal: (value: SetStateAction<boolean>) => void;
+  mintedNFTsStatus?: Record<number, boolean>;
+  mintedNFTsIds?: number[];
+  mintedNFT?: boolean;
 }
