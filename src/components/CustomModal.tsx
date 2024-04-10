@@ -48,6 +48,8 @@ const CustomModal: React.FC<CustomModalProps> = (props) => {
             setOpenModal={props.setOpen}
             mint={mint}
           />
+        ) : error ? (
+          <p color='red'>{error.message}</p>
         ) : isPinning ? (
           <CustomLoader text={`Pinning ${props.imageName} NFT...`} />
         ) : !isConfirming && isPending ? (

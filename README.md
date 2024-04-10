@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# La Cerveceria
 
-## Getting Started
+A NFT Launchpad Next.js + TypeScript app.
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Clone the project:
+
+```
+git clone git@github.com:cholakovvv/nft-launchpad.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Go to nft-launchpad directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd nft-launchpad
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Install all dependencies:
 
-## Learn More
+```
+npm i
+```
 
-To learn more about Next.js, take a look at the following resources:
+- Create a .env.local in the root folder with [NEXT_PUBLIC_PROJECT_ID](https://cloud.walletconnect.com/),
+  [NEXT_PUBLIC_PINATA_JWT](https://app.pinata.cloud/developers/api-keys) and
+  [NEXT_PUBLIC_GATEWAY_URL](https://app.pinata.cloud/gateway):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+NEXT_PUBLIC_PROJECT_ID=project_id
+NEXT_PUBLIC_PINATA_JWT=pinata_jwt
+NEXT_PUBLIC_GATEWAY_URL=gateway_url
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Run the app:
 
-## Deploy on Vercel
+```
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Functionalities
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Wallet Integration**: Connect your wallet seamlessly using RainbowKit, wagmi, and viem.
+- **NFT Gallery**: Explore your NFT collection within a user-friendly dashboard.
+- **NFT Minting**: Upload your NFTs directly to IPFS using Pinata for secure and decentralized storage. Utilizing a smart contract functionality to mint your NFTs.
+- **Gas Fee Estimation**: Estimate gas fees before minting your NFTs to ensure a smooth transaction process.
+- **Enhanced User Experience**: Enjoy a user-friendly interface with loading screens and informative error handling for a seamless experience.

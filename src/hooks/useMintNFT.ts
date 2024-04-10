@@ -4,6 +4,7 @@ import { usePinFileToIPFS } from '@/hooks/usePinFileToIPFS';
 import { useAccount } from 'wagmi';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { PinToIPFSProps } from '@/types/types';
+import handlePinningSuccess from '@/utils/handlePinningSuccess';
 
 const useMintNFT = (props: PinToIPFSProps) => {
   const { isConnected } = useAccount();
@@ -41,15 +42,9 @@ const useMintNFT = (props: PinToIPFSProps) => {
     if (mintInitiated && isConnected) {
       props.setOpenModal && props.setOpenModal(true);
       pin()
-        .then((response) => {
-          if (response && response.success) {
-            setIpfsHash(response.data.data.IpfsHash);
-            setPinningSuccess(true);
-          } else {
-            console.error('Pinning failed:', response?.error);
-            setPinningSuccess(false);
-          }
-        })
+        .then((response) =>
+          handlePinningSuccess({ response, setIpfsHash, setPinningSuccess })
+        )
         .catch((error) => {
           console.error('Error pinning file:', error);
           setPinningSuccess(false);

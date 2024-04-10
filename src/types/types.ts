@@ -75,11 +75,6 @@ export interface CustomLoaderProps {
   text: string;
 }
 
-export interface AlertProps {
-  severity: 'success' | 'info' | 'warning' | 'error';
-  text: string;
-}
-
 export interface NFTCardProps {
   imageId: number;
   imageUrl: string;
@@ -91,4 +86,21 @@ export interface NFTCardProps {
   mintedNFTsStatus?: Record<number, boolean>;
   mintedNFTsIds?: number[];
   mintedNFT?: boolean;
+}
+
+export interface HandlePinningSuccessProps {
+  response:
+    | {
+        success: boolean;
+        data: any;
+        error?: undefined;
+      }
+    | {
+        success: boolean;
+        error: any;
+        data?: undefined;
+      }
+    | undefined;
+  setIpfsHash: (value: SetStateAction<string>) => void;
+  setPinningSuccess: (value: SetStateAction<boolean>) => void;
 }

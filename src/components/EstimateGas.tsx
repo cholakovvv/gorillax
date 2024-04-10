@@ -9,12 +9,16 @@ import CustomLoader from './CustomLoader';
 const EstimateGas: React.FC<EstimateGasProps> = (props) => {
   const [currentGasPrice, setCurrentGasPrice] = useState<string>('');
 
-  const weiEstimatedGas = useEstimateGas({
+  const {
+    data: weiEstimatedGas,
+    error,
+    failureReason,
+  } = useEstimateGas({
     account: '0xD12e71b44BC6479223D18273F56a6Ff9d9F12CA6',
   });
 
   useEffect(() => {
-    setCurrentGasPrice((Number(weiEstimatedGas.data) / 10 ** 9).toFixed(9));
+    setCurrentGasPrice((Number(weiEstimatedGas) / 10 ** 9).toFixed(9));
   }, [props, weiEstimatedGas]);
 
   const handleClick = () => {
@@ -28,7 +32,11 @@ const EstimateGas: React.FC<EstimateGasProps> = (props) => {
         <CustomLoader text='Calculating gas price...' />
       ) : (
         <>
-          <p>Estimated gas price: {currentGasPrice} ETH</p>
+          <p color={error ? 'red' : ''}>
+            {error
+              ? `Error: ${failureReason}`
+              : `Estimated gas price: ${currentGasPrice} ETH`}
+          </p>
           <div className='buttons'>
             <Button
               variant='contained'

@@ -3,11 +3,8 @@
 import '../styles/_dashboard.scss';
 import CustomModal from './CustomModal';
 import { useEffect, useState } from 'react';
-import CustomAlert from './CustomAlert';
-import { useAccount } from 'wagmi';
 import '../styles/_custom-button.scss';
 import NFTCard from './NFTCard';
-import formatAddress from '@/utils/formatAddress';
 
 const imageDetails = [
   { id: 1, src: '/FcBarcelona.jpeg', alt: 'FC Barcelona NFT' },
@@ -58,12 +55,6 @@ const DashBoard: React.FC = () => {
 
   return (
     <div className='dashboard'>
-      {isConfirmed && (
-        <CustomAlert
-          severity='success'
-          text='Transaction successfully completed!'
-        />
-      )}
       <CustomModal
         open={openModal}
         setOpen={setOpenModal}
