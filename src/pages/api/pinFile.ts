@@ -7,6 +7,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       const data = await pinFileToIPFS({ imageUrl: src, imageName: name });
+
       res.status(200).json({ success: true, data });
     } catch (error) {
       console.error(error);

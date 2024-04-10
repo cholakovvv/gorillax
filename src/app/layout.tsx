@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Questrial } from 'next/font/google';
-import '../styles/global.scss';
+import '../styles/_app.scss';
 
 const questrial = Questrial({
   subsets: ['latin'],

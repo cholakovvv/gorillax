@@ -1,0 +1,15 @@
+.estimate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .buttons {
+    display: flex;
+    gap: 1vw;
+
+    .cancel:hover {
+      background-color: #960018;
+    }
+  }
+}

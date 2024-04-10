@@ -18,5 +18,5 @@ export const usePinFileToIPFS = (props: PinToIPFSProps) => {
         return { success: false, error };
       }
     }
-  }, []);
+  }, [props]);
 };

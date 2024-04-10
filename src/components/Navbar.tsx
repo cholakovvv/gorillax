@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import '../styles/navbar.scss';
+import '../styles/_navbar.scss';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Navbar: React.FC = () => {

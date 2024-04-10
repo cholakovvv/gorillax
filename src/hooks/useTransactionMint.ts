@@ -5,7 +5,7 @@ import { MintProps } from '@/types/types';
 import { useEffect } from 'react';
 import { parseEther } from 'viem';
 
-const useMint = (props: MintProps) => {
+const useTransactionMint = (props: MintProps) => {
   const {
     hash,
     error: contractWriterError,
@@ -51,4 +51,4 @@ const useMint = (props: MintProps) => {
   };
 };
 
-export default useMint;
+export default useTransactionMint;
